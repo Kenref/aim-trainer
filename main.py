@@ -10,27 +10,35 @@ WIDTH, HEIGHT = 800, 600
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Aim Trainer")
 
+
 class Target:
   MAX_SIZE = 30
   GROWTH_RATE = 0.2
   COLOUR = "red"
+  SECOND_COLOUR = "white"
 
+  # properties the target starts with
   def __init__(self,x,y):
     self.x = x
     self.y = y
     self.size = 0
     self.grow = True
   
+  # make the target dynamic
   def update(self):
     if self.size + self.GROWTH_RATE >= self.MAX_SIZE:
       self.grow = False
-
     if self.grow:
       self.size += self.GROWTH_RATE
     else:
       self.size -= self.GROWTH_RATE
 
-    
+    # give it the target look
+    def draw(self, win):
+      pygame.draw.circle(win, self.COLOUR, (self.x, self.y), self.size)
+      pygame.draw.circle(win, self.SECOND_COLOUR, (self.x, self.y), self.size * 0.8)
+      pygame.draw.circle(win, self.COLOUR, (self.x, self.y), self.size * 0.6)
+      pygame.draw.circle(win, self.SECOND_COLOUR, (self.x, self.y), self.size * 0.4)
 
 
 
@@ -41,7 +49,7 @@ class Target:
 
 def main():
   run = True
-
+  targets = []
   # check for if if the quit button is clicked
   while run:
     for event in pygame.event.get():
