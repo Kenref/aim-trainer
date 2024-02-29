@@ -65,8 +65,11 @@ def main():
 
       if event.type == TARGET_EVENT:
         x = random.randint(TARGET_PADDING, WIDTH - TARGET_PADDING)
+        y = random.randint(TARGET_PADDING, HEIGHT - TARGET_PADDING)
+        target = Target(x,y)
+        targets.append(target)
 
-        
+
   pygame.quit()
 
 
