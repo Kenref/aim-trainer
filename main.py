@@ -45,8 +45,9 @@ class Target:
     pygame.draw.circle(win, self.COLOUR, (self.x, self.y), self.size * 0.6)
     pygame.draw.circle(win, self.SECOND_COLOUR, (self.x, self.y), self.size * 0.4)
 
-
-
+  def collide(self, x, y):
+    distance = math.sqrt((self.x - x)**2 + (self.y - y)**2)
+    return distance <= self.size
 
 
 def draw(win, targets):
@@ -62,11 +63,19 @@ def main():
   targets = []
   clock = pygame.time.Clock()
 
+  target_pressed = 0
+  clicks = 0
+  misses = 0
+  start_time = time.time()
+
   pygame.time.set_timer(TARGET_EVENT, TARGET_INCREMENT)
 
   # check for if if the quit button is clicked
   while run:
     clock.tick(60)
+    click = False
+    mouse_pos = pygame.mouse.get_pos()
+
     for event in pygame.event.get():
       if event.type == pygame.QUIT:
         run = False
@@ -78,11 +87,21 @@ def main():
         target = Target(x,y)
         targets.append(target)
 
+      if event.type == pygame.MOUSEBUTTONDOWN:
+        click = True
+        clicks += 1
+
     for target in targets:
       target.update()
 
       if target.size <= 0:
         targets.remove(target)
+        misses += 1
+
+      if click and target.collide(mouse_pos[0], mouse_pos[1]):
+        targets.remove(target)
+        target_pressed+=1
+
 
     draw(WIN, targets)
   pygame.quit()
