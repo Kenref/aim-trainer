@@ -15,4 +15,5 @@
 <br>
 
 <h2>Screenshot:</h2>
+
 ![aim-trainer](https://github.com/Kenref/aim-trainer/assets/107287396/1d7feb29-73f9-40bd-9a34-e16f3d0c93c4)
