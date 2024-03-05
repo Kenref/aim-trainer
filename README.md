@@ -15,4 +15,4 @@
 <br>
 
 <h2>Screenshot:</h2>
-![image](aim-trainer.png)
+![image](image.png)
