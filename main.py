@@ -14,6 +14,8 @@ TARGET_INCREMENT = 400
 TARGET_EVENT = pygame.USEREVENT
 TARGET_PADDING = 30
 
+BG_COLOUR = (0,25,40)
+
 class Target:
   MAX_SIZE = 30
   GROWTH_RATE = 0.2
@@ -37,18 +39,23 @@ class Target:
       self.size -= self.GROWTH_RATE
 
     # give it the target look
-    def draw(self, win):
-      pygame.draw.circle(win, self.COLOUR, (self.x, self.y), self.size)
-      pygame.draw.circle(win, self.SECOND_COLOUR, (self.x, self.y), self.size * 0.8)
-      pygame.draw.circle(win, self.COLOUR, (self.x, self.y), self.size * 0.6)
-      pygame.draw.circle(win, self.SECOND_COLOUR, (self.x, self.y), self.size * 0.4)
+  def draw(self, win):
+    pygame.draw.circle(win, self.COLOUR, (self.x, self.y), self.size)
+    pygame.draw.circle(win, self.SECOND_COLOUR, (self.x, self.y), self.size * 0.8)
+    pygame.draw.circle(win, self.COLOUR, (self.x, self.y), self.size * 0.6)
+    pygame.draw.circle(win, self.SECOND_COLOUR, (self.x, self.y), self.size * 0.4)
 
 
 
 
 
+def draw(win, targets):
+  win.fill(BG_COLOUR)
 
+  for target in targets:
+    target.draw((win))
 
+  pygame.display.update()
 
 def main():
   run = True
@@ -69,7 +76,10 @@ def main():
         target = Target(x,y)
         targets.append(target)
 
+    for target in targets:
+      target.update()
 
+    draw(WIN, targets)
   pygame.quit()
 
 
