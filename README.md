@@ -2,7 +2,6 @@
 <h2>How to run:</h2>
 <p>Fork file and "python3 main.py" on mac and "python main.py" on windows</p>
 
-
 <h2>About</h2>
 <ul>
     <li>Click on the targets that appear randomly on the screen.</li>
@@ -16,4 +15,4 @@
 <br>
 
 <h2>Screenshot:</h2>
-(https://github.com/Kenref/aim-trainer/assets/107287396/80ce9791-e96b-4be3-8c90-f9e698160cd7)
+![image](aim-trainer.png)
